@@ -7,7 +7,7 @@
 4. I'd rewrite tests
    1. I'd utlise data providers
    2. I'd improve readability and reusability of the components
-5. I had a plan to add an integration with an api model to optionally  create a summary of a book, like key points. Users would need to provide an api key for this functionality.
+5. I had a plan to add an integration with an AI model to optionally  create a summary of a book, like key points. Users would need to provide an api key for this functionality.
 6. I'd add an endpoint to get a list of cached results - I'm not sure what I'd it for, but maybe the API users would know.
 
 # ADR
