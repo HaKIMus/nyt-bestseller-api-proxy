@@ -45,8 +45,6 @@ class AppServiceProvider extends ServiceProvider
                 cache: $app->make(CacheRepository::class),
                 cacheTtl: config('nyt.cache_ttl'),
                 nytHttpClient: $app->make(NytHttpClient::class),
-                rateLimiter: $app->make(RateLimiter::class),
-                maxAttemptsPerMinute: config('nyt.max_requests_per_minute'),
             );
         });
 

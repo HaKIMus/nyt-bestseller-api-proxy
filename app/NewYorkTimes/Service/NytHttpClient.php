@@ -57,7 +57,7 @@ class NytHttpClient
 
     /**
      * @return HttpResult It should not be possible for clients to send an invalid payload
-     * that could result in NYT returning 400ish - that's why it's set to 500,
+     * that could result in NYT returning 400ish, except for the 404, and that's why it's set to 500,
      * because it means we implemented the connection between NYT api and ours wrong.
      * @throws \JsonException
      */
@@ -67,7 +67,7 @@ class NytHttpClient
             return HttpResult::failure(
                 message: 'NYT API request failed',
                 errors: ['response' => $response->getBody()],
-                statusCode: HttpStatusCode::HTTP_INTERNAL_SERVER_ERROR,
+                statusCode: $response->getStatusCode() === HttpStatusCode::HTTP_NOT_FOUND ? HttpStatusCode::HTTP_NOT_FOUND : HttpStatusCode::HTTP_INTERNAL_SERVER_ERROR,
                 meta: ['url' => $response->getHeader(RedirectMiddleware::HISTORY_HEADER), 'serviceStatusCode' => $response->getStatusCode()],
             );
         }

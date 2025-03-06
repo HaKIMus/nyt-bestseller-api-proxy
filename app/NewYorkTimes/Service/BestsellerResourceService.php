@@ -23,8 +23,17 @@ class BestsellerResourceService
     {
         $cacheKey = self::CACHE_KEY . md5(serialize($filters));
 
-        return $this->cache->remember($cacheKey, $this->cacheTtl, function () use ($filters) {
+        $this->cache->remember($cacheKey, $this->cacheTtl, function () use ($filters) {
             return $this->nytHttpClient->getBestsellers($filters);
         });
+
+        /** @var HttpResult $cacheResult */
+        $cacheResult = $this->cache->get($cacheKey); // I'm aware I trust a little bit too much here that it's going to return an HttpResult
+
+        if ($cacheResult->success !== true) {
+            $this->cache->forget($cacheKey);
+        }
+
+        return $cacheResult;
     }
 }

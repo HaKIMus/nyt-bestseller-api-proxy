@@ -72,12 +72,12 @@ THIS PROXY ADDS A NEW FIELD NAMED **LIKE** "article_title" (if the original titl
 # How to run it
 
 1. Clone the repository
-2. Run `docker compose up -d`
+2. Run `./vendor/bin/sail up`
    1. If you have docker not installed on your device visit:  https://docs.docker.com/engine/install/
 3. Retrieve New York Times api key
    4. On how to do this read section below [Create your own API credentials to access the NYT API](#create-your-own-api-credentials-to-access-the-nyt-api)
-4. To get the bestseller list visit: `http://localhost/api/v1/best-sellers`
-   1. To look for a more specific ISBN filter by:  `http://localhost/api/v1/best-sellers?isbn[]=ISBN_NUMBER`
+4. To get the bestseller list visit: `http://localhost/api/v1/bestsellers`
+   1. To look for a more specific ISBN filter by:  `http://localhost/api/v1/bestsellers?isbn[]=ISBN_NUMBER`
 5. To run tests exec the following command: ` docker compose exec -it laravel.test php artisan test`
 
 ## Create your own API credentials to access the NYT API:
